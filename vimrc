@@ -12,7 +12,14 @@ filetype on
 filetype indent on
 filetype plugin on
 
+set noshowmode
+
 set showmatch
+
+" Free the cursor in visual block mode so you can highlight arbitrary
+" text/shapes even if there are no characters in the space.
+
+set virtualedit=block
 
 " Make search results case sensitive only if using mixed case
 
@@ -29,6 +36,7 @@ set undolevels=1000
 
 " Ignore crap I don't need when tab completing file names
 
+set wildmenu
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " Change terminal title if we're running in a terminal session
@@ -85,6 +93,9 @@ nnoremap <silent> <C-D> :NERDTreeToggle<CR>
 " Python Specific Stuff
 
 autocmd BufWritePost *.py call Flake8() " Run flake8 whenever saving .py files!
+autocmd filetype python set foldmethod=indent " Use indentation to guide folding
+autocmd filetype python nnoremap <space> za " Bind space to fold/unfold
+autocmd filetype python set foldnestmax=2
 
 " Hide that nasty looking YankRing history file from ~/
 
