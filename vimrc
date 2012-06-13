@@ -90,13 +90,6 @@ call pathogen#helptags()
 
 nnoremap <silent> <C-D> :NERDTreeToggle<CR>
 
-" Python Specific Stuff
-
-autocmd BufWritePost *.py call Flake8() " Run flake8 whenever saving .py files!
-autocmd filetype python set foldmethod=indent " Use indentation to guide folding
-autocmd filetype python nnoremap <space> za " Bind space to fold/unfold
-autocmd filetype python set foldnestmax=2
-
 " Hide that nasty looking YankRing history file from ~/
 
 let g:yankring_history_file = '.YankRing_history'
@@ -125,4 +118,4 @@ set encoding=utf-8
 
 " let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols = 'unicode'
-" let g:Powerline_symbols = 'fancy' " Fancy symbols in powerline (might not work on some setups!)
+"let g:Powerline_symbols = 'fancy' " Fancy symbols in Powerline 
