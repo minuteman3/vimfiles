@@ -97,3 +97,21 @@ nnoremap <silent> ,/ :nohlsearch<CR>
 " Add a bind for clearing active highlighted searches.
 
 nnoremap <silent> ,/ :nohlsearch<CR>
+
+" Disable vi compatibility mode
+
+set nocompatible
+
+" Always show status line
+
+set laststatus=2
+
+" Use UTF-8 for fancy characters
+
+set encoding=utf-8
+
+" Set up PowerLine for a nicer status bar
+
+" let g:Powerline_symbols = 'compatible'
+let g:Powerline_symbols = 'unicode'
+" let g:Powerline_symbols = 'fancy' " Fancy symbols in powerline (might not work on some setups!)
