@@ -37,7 +37,7 @@ set undolevels=1000
 " Ignore crap I don't need when tab completing file names
 
 set wildmenu
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.svn,*.git,*.hg,*.o,*.a,*.jpg,*.png,*.gif
 
 " Change terminal title if we're running in a terminal session
 
