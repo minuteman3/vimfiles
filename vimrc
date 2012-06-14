@@ -81,7 +81,8 @@ vnoremap <F1> <ESC>
 
 nnoremap ; :
 
-colorscheme mustang 
+set background=dark
+colorscheme solarized
 
 " Initialising Pathogen for easier plugin setup
 
