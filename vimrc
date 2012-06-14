@@ -1,3 +1,8 @@
+" Initialising Pathogen for easier plugin setup
+
+call pathogen#infect()
+call pathogen#helptags()
+
 syntax on
 set number
 set tabstop=4
@@ -84,11 +89,6 @@ nnoremap ; :
 set background=dark
 colorscheme solarized
 
-" Initialising Pathogen for easier plugin setup
-
-call pathogen#infect()
-call pathogen#helptags()
-
 nnoremap <silent> <C-D> :NERDTreeToggle<CR>
 
 " Hide that nasty looking YankRing history file from ~/
@@ -120,3 +120,10 @@ set encoding=utf-8
 " let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols = 'unicode'
 "let g:Powerline_symbols = 'fancy' " Fancy symbols in Powerline 
+
+" The toolbar is a waste of screen space and totally contrary to the keyboard
+" centric vim style. Gone.
+
+if has("gui_running")
+    set guioptions=-t
+endif
