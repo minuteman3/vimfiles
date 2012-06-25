@@ -27,7 +27,7 @@
 " If you want all possible Python highlighting (the same as setting the
 " preceding options):
 "
-"    let python_highlight_all = 1
+let python_highlight_all = 1
 "
 
 " For version 5.x: Clear all syntax items

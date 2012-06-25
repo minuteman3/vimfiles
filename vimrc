@@ -9,6 +9,7 @@ set tabstop=4
 set shiftwidth=4
 set shiftround
 set expandtab
+set foldlevelstart=2
 
 set autoindent
 set copyindent
@@ -118,8 +119,8 @@ set encoding=utf-8
 " Set up PowerLine for a nicer status bar
 
 " let g:Powerline_symbols = 'compatible'
-let g:Powerline_symbols = 'unicode'
-"let g:Powerline_symbols = 'fancy' " Fancy symbols in Powerline 
+"let g:Powerline_symbols = 'unicode'
+let g:Powerline_symbols = 'fancy' " Fancy symbols in Powerline 
 
 " The toolbar is a waste of screen space and totally contrary to the keyboard
 " centric vim style. Gone.
@@ -127,3 +128,13 @@ let g:Powerline_symbols = 'unicode'
 if has("gui_running")
     set guioptions=-t
 endif
+
+" Adds :DiffSaved and :diffoff commands to view changes since last write
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
