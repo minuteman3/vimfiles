@@ -10,5 +10,3 @@ Switch to '~/.vim' and fetch submodules:
     cd ~/.vim
     git submodule init
     git submodule update
-
-NOTE! Command-T native C extensions may (read: will) need to be rebuilt. First make sure the vim build in question has Ruby support enabled, then go to the the 'bundle/command-t/' directory and 'rake make'
