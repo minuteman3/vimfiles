@@ -83,16 +83,12 @@ nnoremap <c-h> <c-w>h
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
-
+map <F1> <ESC>
 nnoremap ; :
-
 set background=dark
 colorscheme solarized
 
-nnoremap <silent> <C-D> :NERDTreeToggle<CR>
-
-" Hide that nasty looking YankRing history file from ~/
+" Hide that nasty lookig YankRing history file from ~/
 
 let g:yankring_history_file = '.YankRing_history'
 
@@ -139,4 +135,10 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
+" Rebind Ctrl-P to <Leader>p to not clash with YankRing
+
 let g:ctrlp_map = '<Leader>p'
+
+" Make the indent guides a little less ugly by only occupying one column
+
+let g:indent_guides_guide_size = 1
