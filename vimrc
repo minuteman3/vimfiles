@@ -14,6 +14,8 @@ set foldlevelstart=2
 set autoindent
 set copyindent
 
+set cm=blowfish
+
 filetype on
 filetype indent on
 filetype plugin on
@@ -138,6 +140,7 @@ com! DiffSaved call s:DiffWithSaved()
 " Rebind Ctrl-P to <Leader>p to not clash with YankRing
 
 let g:ctrlp_map = '<Leader>p'
+nmap <Leader>f :CtrlPLine<CR>
 
 " Make the indent guides a little less ugly by only occupying one column
 
