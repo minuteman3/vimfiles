@@ -1,3 +1,17 @@
+" Environment Setup {
+
+    " Basic setup {
+        set nocompatible
+        set background=dark
+    " }
+
+    " Vundle setup {
+        filetype off
+        set rtp+=~/.vim/bundle/vundle/
+        call vundle#rc()
+    " }
+
+" }
 syntax on
 set spell
 set number
