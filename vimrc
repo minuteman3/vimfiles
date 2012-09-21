@@ -1,3 +1,7 @@
+" Personal vim setup of Miles McGuire. Fully custom and from scratch, credit
+" to spf13 for inspiring the newly redesigned vimrc layout and for the
+" neocomplcache config. Free to use for all but no support offered.
+
 " Environment Setup {
 
     " Basic setup {
