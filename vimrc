@@ -214,10 +214,10 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-nnoremap <c-j> <c-w>j<c-w>_
-nnoremap <c-k> <c-w>k<c-w>_
-nnoremap <c-l> <c-w>l<c-w>_
-nnoremap <c-h> <c-w>h<c-w>_
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
