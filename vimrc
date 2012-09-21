@@ -24,20 +24,24 @@
     " }
 
     if !exists('g:minuteman3_bundle_groups')
-        let g:minuteman3_bundle_groups=['general', 'programming', 'python']
+        let g:minuteman3_bundle_groups=['general', 'programming', 'python', 'php', 'html']
     endif
 
     if count(g:minuteman3_bundle_groups, 'general')
         Bundle 'altercation/vim-colors-solarized'
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
-        Bundle 'LustyJuggler'
         Bundle 'mbbill/undotree'
         Bundle 'kien/ctrlp.vim'
         Bundle 'tpope/vim-surround'
         Bundle 'tpope/vim-repeat'
         Bundle 'scrooloose/nerdtree'
-        Bundle 'myusuf3/numbers.vim'
+        if has("ruby")
+            Bundle 'LustyJuggler'
+        endif
+        if version >= 703
+            Bundle 'myusuf3/numbers.vim'
+        endif
     endif
 
     if count(g:minuteman3_bundle_groups, 'programming')
@@ -55,6 +59,15 @@
         Bundle 'python.vim'
         Bundle 'python_match.vim'
         Bundle 'pythoncomplete'
+    endif
+
+    if count(g:minuteman3_bundle_groups, 'php')
+        Bundle 'spf13/PIV'
+    endif
+
+    if count(g:minuteman3_bundle_groups, 'html')
+        Bundle 'amirh/HTML-AutoCloseTag'
+        Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
     endif
 
 " }
@@ -139,6 +152,11 @@
     " }
 " }
 
+if has("persistent_undo")
+    set undodir = '$HOME/.vim_scratch'
+    set undofile
+endif
+
 filetype plugin indent on
 colorscheme solarized
 syntax on
@@ -154,7 +172,9 @@ set foldlevelstart=2
 set autoindent
 set copyindent
 
-set cm=blowfish
+if version >= 703
+    set cm=blowfish
+endif
 
 set noshowmode
 
