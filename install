@@ -1,3 +1,6 @@
 #!/bin/sh
 
-git submodule update --init --recursive
+echo "Fetching Vundle"
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+echo "Installing bundles"
+vim +BundleInstall +BundleClean +qall
