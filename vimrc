@@ -12,7 +12,133 @@
     " }
 
 " }
+
+" Bundle Config {
+
+    " Depenencies {
+        Bundle 'gmarik/vundle'
+    " }
+
+    if !exists('g:minuteman3_bundle_groups')
+        let g:minuteman3_bundle_groups=['general', 'programming', 'python']
+    endif
+
+    if count(g:minuteman3_bundle_groups, 'general')
+        Bundle 'altercation/vim-colors-solarized'
+        Bundle 'Lokaltog/vim-powerline'
+        Bundle 'Lokaltog/vim-easymotion'
+        Bundle 'LustyJuggler'
+        Bundle 'mbbill/undotree'
+        Bundle 'kien/ctrlp.vim'
+        Bundle 'tpope/vim-surround'
+        Bundle 'tpope/vim-repeat'
+        Bundle 'scrooloose/nerdtree'
+        Bundle 'myusuf3/numbers.vim'
+    endif
+
+    if count(g:minuteman3_bundle_groups, 'programming')
+        Bundle 'tpope/vim-fugitive'
+        Bundle 'scrooloose/syntastic'
+        Bundle 'scrooloose/nerdcommenter'
+        if executable('ctags')
+            Bundle 'majutsushi/tagbar'
+        endif
+        Bundle 'Shougo/neocomplcache'
+    endif
+
+    if count(g:minuteman3_bundle_groups, 'python')
+        Bundle 'klen/python-mode'
+        Bundle 'python.vim'
+        Bundle 'python_match.vim'
+        Bundle 'pythoncomplete'
+    endif
+
+" }
+
+" Plugin Config {
+    " Tags {
+        set tags=./tags;/,~/.vimtags
+    " }
+
+    " PowerLine {
+        " let g:Powerline_symbols = 'compatible'
+        " let g:Powerline_symbols = 'unicode'
+        let g:Powerline_symbols = 'fancy'
+        call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+    " }
+
+    " neocomplcache {
+        let g:neocomplcache_enable_at_startup = 1
+        let g:neocomplcache_enable_camel_case_completion = 1
+        let g:neocomplcache_enable_smart_case = 1
+        let g:neocomplcache_enable_underbar_completion = 1
+        let g:neocomplcache_min_syntax_length = 3
+        let g:neocomplcache_enable_auto_delimiter = 1
+
+        " AutoComplPop like behavior.
+        let g:neocomplcache_enable_auto_select = 0
+
+        " <CR>: close popup
+        " <s-CR>: close popup and save indent.
+        inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+        inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup() "\<CR>" : "\<CR>"
+
+        " <TAB>: completion.
+        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+        " <C-h>, <BS>: close popup and delete backword char.
+        inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+        inoremap <expr><C-y>  neocomplcache#close_popup()
+        inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+        " Enable omni completion.
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+        " Enable heavy omni completion.
+        if !exists('g:neocomplcache_omni_patterns')
+            let g:neocomplcache_omni_patterns = {}
+        endif
+        let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+        let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+        let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+        let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+        " For snippet_complete marker.
+        if has('conceal')
+            set conceallevel=2 concealcursor=i
+        endif
+    " }
+
+    " UndoTree {
+        nnoremap <Leader>u :UndotreeToggle<CR>
+    " }
+
+    " PythonMode {
+    if !has('python')
+        let g:pymode = 1
+    endif
+    " }
+
+    " Fugitive {
+        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gb :Gblame<CR>
+        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
+    " }
+" }
+
+filetype plugin indent on
+colorscheme solarized
 syntax on
+set mouse=a
 set spell
 set number
 set tabstop=4
@@ -25,10 +151,6 @@ set autoindent
 set copyindent
 
 set cm=blowfish
-
-filetype on
-filetype indent on
-filetype plugin on
 
 set noshowmode
 
@@ -88,10 +210,10 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j<c-w>_
+nnoremap <c-k> <c-w>k<c-w>_
+nnoremap <c-l> <c-w>l<c-w>_
+nnoremap <c-h> <c-w>h<c-w>_
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -108,10 +230,6 @@ nnoremap <silent> ,/ :nohlsearch<CR>
 
 nnoremap <silent> ,/ :nohlsearch<CR>
 
-" Disable vi compatibility mode
-
-set nocompatible
-
 " Always show status line
 
 set laststatus=2
@@ -126,7 +244,3 @@ set encoding=utf-8
 if has("gui_running")
     set guioptions=-t
 endif
-
-" Make the indent guides a little less ugly by only occupying one column
-
-let g:indent_guides_guide_size = 1
