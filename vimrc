@@ -1,9 +1,5 @@
-" Initialising Pathogen for easier plugin setup
-
-call pathogen#infect()
-call pathogen#helptags()
-
 syntax on
+set spell
 set number
 set tabstop=4
 set shiftwidth=4
@@ -53,7 +49,7 @@ set title
 
 " Get rid of annoying bells
 
-set visualbell
+set novisualbell
 set noerrorbells
 
 " Annoying outmoded backup methods BE GONE.
@@ -87,12 +83,8 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 map <F1> <ESC>
 nnoremap ; :
+
 set background=dark
-colorscheme solarized
-
-" Hide that nasty lookig YankRing history file from ~/
-
-let g:yankring_history_file = '.YankRing_history'
 
 " Add a bind for clearing active highlighted searches.
 
@@ -114,33 +106,12 @@ set laststatus=2
 
 set encoding=utf-8
 
-" Set up PowerLine for a nicer status bar
-
-" let g:Powerline_symbols = 'compatible'
-"let g:Powerline_symbols = 'unicode'
-let g:Powerline_symbols = 'fancy' " Fancy symbols in Powerline 
-
 " The toolbar is a waste of screen space and totally contrary to the keyboard
 " centric vim style. Gone.
 
 if has("gui_running")
     set guioptions=-t
 endif
-
-" Adds :DiffSaved and :diffoff commands to view changes since last write
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
-
-" Rebind Ctrl-P to <Leader>p to not clash with YankRing
-
-let g:ctrlp_map = '<Leader>p'
-nmap <Leader>f :CtrlPLine<CR>
 
 " Make the indent guides a little less ugly by only occupying one column
 
