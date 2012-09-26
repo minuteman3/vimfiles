@@ -24,7 +24,7 @@
     " }
 
     if !exists('g:minuteman3_bundle_groups')
-        let g:minuteman3_bundle_groups=['general', 'programming', 'python', 'php', 'html']
+        let g:minuteman3_bundle_groups=['general', 'programming', 'python', 'php', 'html', 'scala']
     endif
 
     if count(g:minuteman3_bundle_groups, 'general')
@@ -70,6 +70,10 @@
         Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
     endif
 
+    if count(g:minuteman3_bundle_groups, 'scala')
+        Bundle 'derekwyatt/vim-scala'
+        Bundle 'derekwyatt/vim-sbt'
+    endif
 " }
 
 " Plugin Config {
