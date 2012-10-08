@@ -24,7 +24,7 @@
     " }
 
     if !exists('g:minuteman3_bundle_groups')
-        let g:minuteman3_bundle_groups=['general', 'programming', 'python', 'php', 'html', 'scala']
+        let g:minuteman3_bundle_groups=['general', 'programming', 'python', 'php', 'html', 'scala', 'haskell']
     endif
 
     if count(g:minuteman3_bundle_groups, 'general')
@@ -73,6 +73,10 @@
     if count(g:minuteman3_bundle_groups, 'scala')
         Bundle 'derekwyatt/vim-scala'
         Bundle 'derekwyatt/vim-sbt'
+    endif
+
+    if count(g:minuteman3_bundle_groups, 'haskell')
+        Bundle 'wlangstroth/vim-haskell'
     endif
 " }
 
