@@ -1,7 +1,7 @@
 " Personal vim setup of Miles McGuire. Fully custom and from scratch, credit
 " to spf13 for inspiring the newly redesigned vimrc layout and for the
 " neocomplcache config. Free to use for all but no support offered.
-
+"
 " Environment Setup {
 
     " Basic setup {
@@ -24,7 +24,7 @@
     " }
 
     if !exists('g:minuteman3_bundle_groups')
-        let g:minuteman3_bundle_groups=['general', 'programming', 'python', 'php', 'html', 'scala', 'haskell']
+        let g:minuteman3_bundle_groups=['general', 'programming', 'python', 'php', 'html', 'scala', 'haskell', 'prolog']
     endif
 
     if count(g:minuteman3_bundle_groups, 'general')
@@ -78,6 +78,11 @@
     if count(g:minuteman3_bundle_groups, 'haskell')
         Bundle 'wlangstroth/vim-haskell'
     endif
+
+    if count(g:minuteman3_bundle_groups, 'prolog')
+        Bundle 'adimit/prolog.vim'
+    endif
+
 " }
 
 " Plugin Config {
@@ -168,7 +173,6 @@ endif
 filetype plugin indent on
 colorscheme solarized
 syntax on
-set mouse=a
 set spell
 set number
 set tabstop=4
@@ -254,6 +258,7 @@ nnoremap ; :
 
 set background=dark
 
+set ffs=unix,dos,mac
 " Add a bind for clearing active highlighted searches.
 
 nnoremap <silent> ,/ :nohlsearch<CR>
