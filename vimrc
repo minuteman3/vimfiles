@@ -24,12 +24,12 @@
     " }
 
     if !exists('g:minuteman3_bundle_groups')
-        let g:minuteman3_bundle_groups=['general', 'programming', 'python', 'php', 'html', 'scala', 'haskell', 'prolog']
+        let g:minuteman3_bundle_groups=['general', 'programming', 'latex', 'python', 'html', 'haskell']
     endif
 
     if count(g:minuteman3_bundle_groups, 'general')
-        Bundle 'altercation/vim-colors-solarized'
-        Bundle 'Lokaltog/vim-powerline'
+        Bundle 'sickill/vim-monokai'
+        Bundle 'bling/vim-airline'
         Bundle 'Lokaltog/vim-easymotion'
         Bundle 'mbbill/undotree'
         Bundle 'kien/ctrlp.vim'
@@ -39,19 +39,18 @@
         if has("ruby")
             Bundle 'LustyJuggler'
         endif
-        if version >= 703
-            Bundle 'myusuf3/numbers.vim'
-        endif
     endif
 
     if count(g:minuteman3_bundle_groups, 'programming')
+        Bundle 'airblade/vim-gitgutter'
+        Bundle 'edkolev/tmuxline.vim'
         Bundle 'tpope/vim-fugitive'
         Bundle 'scrooloose/syntastic'
         Bundle 'scrooloose/nerdcommenter'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
-        Bundle 'Shougo/neocomplcache'
+        Bundle 'Valloric/YouCompleteMe'
     endif
 
     if count(g:minuteman3_bundle_groups, 'python')
@@ -61,8 +60,8 @@
         Bundle 'pythoncomplete'
     endif
 
-    if count(g:minuteman3_bundle_groups, 'php')
-        Bundle 'spf13/PIV'
+    if count(g:minuteman3_bundle_groups, 'latex')
+        Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
     endif
 
     if count(g:minuteman3_bundle_groups, 'html')
@@ -70,17 +69,8 @@
         Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
     endif
 
-    if count(g:minuteman3_bundle_groups, 'scala')
-        Bundle 'derekwyatt/vim-scala'
-        Bundle 'derekwyatt/vim-sbt'
-    endif
-
     if count(g:minuteman3_bundle_groups, 'haskell')
         Bundle 'wlangstroth/vim-haskell'
-    endif
-
-    if count(g:minuteman3_bundle_groups, 'prolog')
-        Bundle 'adimit/prolog.vim'
     endif
 
 " }
@@ -88,61 +78,6 @@
 " Plugin Config {
     " Tags {
         set tags=./tags;/,~/.vimtags
-    " }
-
-    " PowerLine {
-        " let g:Powerline_symbols = 'compatible'
-        " let g:Powerline_symbols = 'unicode'
-        let g:Powerline_symbols = 'fancy'
-        call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
-    " }
-
-    " neocomplcache {
-        let g:neocomplcache_enable_at_startup = 1
-        let g:neocomplcache_enable_camel_case_completion = 1
-        let g:neocomplcache_enable_smart_case = 1
-        let g:neocomplcache_enable_underbar_completion = 1
-        let g:neocomplcache_min_syntax_length = 3
-        let g:neocomplcache_enable_auto_delimiter = 1
-
-        " AutoComplPop like behavior.
-        let g:neocomplcache_enable_auto_select = 0
-
-        " <CR>: close popup
-        " <s-CR>: close popup and save indent.
-        inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-        inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup() "\<CR>" : "\<CR>"
-
-        " <TAB>: completion.
-        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-        " <C-h>, <BS>: close popup and delete backword char.
-        inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><C-y>  neocomplcache#close_popup()
-        inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-        " Enable omni completion.
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-        " Enable heavy omni completion.
-        if !exists('g:neocomplcache_omni_patterns')
-            let g:neocomplcache_omni_patterns = {}
-        endif
-        let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
-        let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-        let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-        let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-        " For snippet_complete marker.
-        if has('conceal')
-            set conceallevel=2 concealcursor=i
-        endif
     " }
 
     " UndoTree {
@@ -163,17 +98,23 @@
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
     " }
+
+    " vim-LaTeX {
+        set grepprg =grep\ -nH\ $*
+        let g:tex_flavor='latex'
+    " }
 " }
 
 if has("persistent_undo")
-    set undodir = '$HOME/.vim_scratch'
+    set undodir="$HOME/.vim_scratch"
     set undofile
 endif
 
 filetype plugin indent on
-colorscheme solarized
+colorscheme monokai
 syntax on
-set spell
+au BufNewFile,BufRead,BufEnter *.tex setlocal spell spelllang=en_gb
+au BufNewFile,BufRead,BufEnter *.txt setlocal spell spelllang=en_gb
 set number
 set tabstop=4
 set shiftwidth=4
