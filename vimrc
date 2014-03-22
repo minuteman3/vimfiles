@@ -35,7 +35,9 @@
         Bundle 'kien/ctrlp.vim'
         Bundle 'tpope/vim-surround'
         Bundle 'tpope/vim-repeat'
+        Bundle 'tpope/vim-jdaddy'
         Bundle 'scrooloose/nerdtree'
+        Bundle 'SirVer/ultisnips'
         if has("ruby")
             Bundle 'LustyJuggler'
         endif
@@ -70,7 +72,8 @@
     endif
 
     if count(g:minuteman3_bundle_groups, 'haskell')
-        Bundle 'wlangstroth/vim-haskell'
+        "Bundle 'wlangstroth/vim-haskell'
+        Bundle 'dag/vim2hs'
     endif
 
 " }
@@ -113,7 +116,6 @@ endif
 filetype plugin indent on
 colorscheme monokai
 syntax on
-au BufNewFile,BufRead,BufEnter *.tex setlocal spell spelllang=en_gb
 au BufNewFile,BufRead,BufEnter *.txt setlocal spell spelllang=en_gb
 set number
 set tabstop=4
@@ -177,10 +179,6 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " Unbind arrow keys and some other various remaps
 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -222,3 +220,9 @@ set encoding=utf-8
 if has("gui_running")
     set guioptions=-t
 endif
+
+autocmd FileType lhaskell setlocal formatoptions+=ro
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
