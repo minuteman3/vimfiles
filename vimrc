@@ -56,24 +56,12 @@
     endif
 
     if count(g:minuteman3_bundle_groups, 'python')
-        Bundle 'klen/python-mode'
-        Bundle 'python.vim'
-        Bundle 'python_match.vim'
-        Bundle 'pythoncomplete'
-    endif
-
-    if count(g:minuteman3_bundle_groups, 'latex')
-        Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+        Bundle 'nvie/vim-flake8'
     endif
 
     if count(g:minuteman3_bundle_groups, 'html')
         Bundle 'amirh/HTML-AutoCloseTag'
         Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
-    endif
-
-    if count(g:minuteman3_bundle_groups, 'haskell')
-        "Bundle 'wlangstroth/vim-haskell'
-        Bundle 'dag/vim2hs'
     endif
 
 " }
@@ -88,9 +76,11 @@
     " }
 
     " PythonMode {
-    if !has('python')
-        let g:pymode = 1
-    endif
+    "if !has('python')
+        "let g:pymode = 1
+    "endif
+    let g:pymode_options = 0
+    let g:pymode = 1
     " }
 
     " Fugitive {
@@ -222,7 +212,11 @@ if has("gui_running")
 endif
 
 autocmd FileType lhaskell setlocal formatoptions+=ro
+"autocmd FileType python setlocal textwidth=119
+"autocmd FileType python setlocal colorcolumn=+1
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+let g:airline_powerline_fonts = 1
