@@ -28,6 +28,7 @@
     endif
 
     if count(g:minuteman3_bundle_groups, 'general')
+        Bundle 'altercation/vim-colors-solarized'
         Bundle 'sickill/vim-monokai'
         Bundle 'bling/vim-airline'
         Bundle 'Lokaltog/vim-easymotion'
@@ -38,6 +39,8 @@
         Bundle 'tpope/vim-jdaddy'
         Bundle 'scrooloose/nerdtree'
         Bundle 'SirVer/ultisnips'
+        Bundle 'nginx.vim'
+        Bundle 'godlygeek/tabular'
         if has("ruby")
             Bundle 'LustyJuggler'
         endif
@@ -148,6 +151,7 @@ set undolevels=1000
 set wildmenu
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.svn,*.git,*.hg,*.o,*.a,*.jpg,*.png,*.gif
 
+
 " Change terminal title if we're running in a terminal session
 
 set title
@@ -209,14 +213,31 @@ set encoding=utf-8
 
 if has("gui_running")
     set guioptions=-t
+    set guifont=Inconsolata\ for\ Powerline\ Medium\ 13
+    set noantialias
 endif
 
 autocmd FileType lhaskell setlocal formatoptions+=ro
 "autocmd FileType python setlocal textwidth=119
 "autocmd FileType python setlocal colorcolumn=+1
 
+let g:syntastic_python_checkers = ['flake8']
+let g:flake8_max_line_length=120
+
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 let g:airline_powerline_fonts = 1
+
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+    let g:ctrlp_user_command='ag %s --files-with-matches --nocolor --hidden -g ""'
+    let g:ctrlp_use_caching=0
+endif
+
+set mouse=a
